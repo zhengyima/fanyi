@@ -1,0 +1,135 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
+<head>
+
+<!-- /.website title -->
+<title>Fanyi Login Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<!-- CSS Files -->
+<link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="__PUBLIC__/css/font-awesome.min.css" rel="stylesheet">
+<link href="__PUBLIC__/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+<link href="__PUBLIC__/css/animate.css" rel="stylesheet" media="screen">
+<link href="__PUBLIC__/css/owl.theme.css" rel="stylesheet">
+<link href="__PUBLIC__/css/owl.carousel.css" rel="stylesheet">
+
+<!-- Colors -->
+<link href="__PUBLIC__/css/css-index.css" rel="stylesheet" media="screen">
+<!-- <link href="css/css-index-green.css" rel="stylesheet" media="screen"> -->
+<!-- <link href="css/css-index-purple.css" rel="stylesheet" media="screen"> -->
+<!-- <link href="css/css-index-red.css" rel="stylesheet" media="screen"> -->
+<!-- <link href="css/css-index-orange.css" rel="stylesheet" media="screen"> -->
+<!-- <link href="css/css-index-yellow.css" rel="stylesheet" media="screen"> -->
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" />
+
+</head>
+  
+<body data-spy="scroll" data-target="#navbar-scroll">
+
+<!-- /.preloader -->
+<div id="preloader"></div>
+<div id="top"></div>
+
+<!-- /.parallax full screen background image -->
+<div class="fullscreen landing parallax" style="background-image:url('__PUBLIC__/images/bg.jpg');" data-img-width="2000" data-img-height="1333" data-diff="100">
+	
+	<div class="overlay">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7">
+				
+					<!-- /.logo -->
+					<div class="logo wow fadeInDown"> <a href=""><img src="__PUBLIC__/images/logo.png" alt="logo"></a></div>
+
+					<!-- /.main title -->
+						<h1 class="wow fadeInLeft">
+						Fanyi Results Correction Login Page
+						</h1>
+
+					<!-- /.header paragraph -->
+					<div class="landing-text wow fadeInUp">
+						<p>These are English image captions translated results from BaiduFanyi. Please check it and correct if it's wrong !</p>
+					</div>				 		  
+
+				</div> 
+				
+				<!-- /.signup form -->
+				<div class="col-md-5">
+				
+					<div class="signup-header wow fadeInUp">
+						<h3 class="form-title text-center">User Login</h3>
+						<form class="form-header"  role="form" method="POST" id="#">
+							<div class="form-group">
+								<input class="form-control input-lg" name="name" type="text" placeholder="Your name" id="uid" required>
+							</div>
+							<div class="form-group">
+								<input class="form-control input-lg" name="password" type="password" placeholder="Your password" id="upasswd" required>
+							</div>
+							<div class="form-group last">
+								<input class="btn btn-warning btn-block btn-lg" value="LOGIN" id="btn-commit">
+							</div
+						</form>
+					</div>				
+				
+				</div>
+			</div>
+		</div> 
+	</div> 
+</div>
+ 
+<!-- /.footer -->
+<footer id="footer">
+	<div class="container">
+		<div class="col-sm-4 col-sm-offset-4">
+			<!-- /.social links -->
+				<div class="social text-center">
+					<ul>
+						<li><a class="wow fadeInUp" href="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a class="wow fadeInUp" href="#" data-wow-delay="0.2s"><i class="fa fa-facebook"></i></a></li>
+						<li><a class="wow fadeInUp" href="#" data-wow-delay="0.4s"><i class="fa fa-google-plus"></i></a></li>
+						<li><a class="wow fadeInUp" href="#" data-wow-delay="0.6s"><i class="fa fa-instagram"></i></a></li>
+					</ul>
+				</div>	
+			<div class="text-center wow fadeInUp" style="font-size: 14px;">Copyright Backyard 2017 - from Zhao Yida, Song Yuqing , Lmerengues</div>
+			<a href="#" class="scrollToTop"><i class="pe-7s-up-arrow pe-va"></i></a>
+		</div>	
+	</div>	
+</footer>
+	
+	<!-- /.javascript files -->
+    <script src="__PUBLIC__/js/jquery.js"></script>
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/js/custom.js"></script>
+    <script src="__PUBLIC__/js/jquery.sticky.js"></script>
+	<script src="__PUBLIC__/js/wow.min.js"></script>
+	<script src="__PUBLIC__/js/owl.carousel.min.js"></script>
+	<script>
+		new WOW().init();
+		$(document).ready(function(){
+
+		    $("#btn-commit").click(function(){
+
+		    	var uid = $("#uid").val();
+		    	var upasswd = $("#upasswd").val();
+
+				$.post("<?php echo U('Index/Login/login');?>",{uid:uid,upasswd:upasswd},function(data){
+					console.log(data);
+					if(data.status == 1){
+						location.href="<?php echo U('Index/Main/index', array('page'=>1));?>";
+					}
+					else if(data.status == 2){
+					    alert("密码错误");
+					}
+					else{
+						alert("用户不存在");
+					}
+
+				})
+			})
+		})
+	</script>
+  </body>
+</html>
