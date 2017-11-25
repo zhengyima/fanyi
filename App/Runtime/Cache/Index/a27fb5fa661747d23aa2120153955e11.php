@@ -117,6 +117,7 @@
 
 				$.post("<?php echo U('Index/Login/login');?>",{uid:uid,upasswd:upasswd},function(data){
 					console.log(data);
+					console.log("asdasd");
 					if(data.status == 1){
 						location.href="<?php echo U('Index/Main/index', array('page'=>1));?>";
 					}
